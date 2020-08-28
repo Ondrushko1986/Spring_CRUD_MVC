@@ -13,7 +13,7 @@
 </head>
 <body>
 <h2>Users</h2>
-<table>
+<table border="2" style="width:100px">
     <tr>
         <th>id</th>
         <th>Name</th>

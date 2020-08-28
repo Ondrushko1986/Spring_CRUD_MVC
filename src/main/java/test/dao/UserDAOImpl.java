@@ -1,64 +1,54 @@
 package test.dao;
 
+
 import test.model.User;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-@Transactional(readOnly = false)
 public class UserDAOImpl implements UserDAO {
 
-    private SessionFactory sessionFactory;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public void setUserDAOImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
+
 
     @Override
     @SuppressWarnings("unchecked")
     public List<User> allUsers() {
-        Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from users_crud_mvc").list();
+        return entityManager.createQuery("from User").getResultList();
     }
 
     @Override
     public void add(User user) {
-        Session session = sessionFactory.getCurrentSession();
-        session.persist(user);
+        entityManager.persist(user);
     }
 
     @Override
     public void delete(User user) {
-        Session session = sessionFactory.getCurrentSession();
-        session.delete(user);
+        entityManager.remove(user);
     }
 
     @Override
     public void edit(User user) {
-        Session session = sessionFactory.getCurrentSession();
-        session.update(user);
+        entityManager.merge(user);
     }
 
     @Override
     public User getById(int id) {
-        Session session = sessionFactory.getCurrentSession();
-        return session.get(User.class, id);
+        return entityManager.find(User.class, id);
     }
 
 
-//    @PersistenceContext
-//    public final EntityManager entityManager;
-//
-//    @Autowired
-//    public UserDAOImpl(EntityManager entityManager) {
-//        this.entityManager = entityManager;
-//    }
 //
 //    @Override
 //    public List allUsers() {

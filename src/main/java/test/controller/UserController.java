@@ -35,7 +35,7 @@ public class UserController {
         User user = userService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editPage");
-        modelAndView.addObject("user", userService.getById(id));
+        modelAndView.addObject("user", user);
         return modelAndView;
     }
 

@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = {"test"})
+@ComponentScan(basePackages = "test")
 @EnableTransactionManagement
 @PropertySource(value = "classpath:hibernate.properties")
 public class HibernateConfig {
@@ -44,21 +44,7 @@ public class HibernateConfig {
         return dataSource;
     }
 
-    @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("test");
-        sessionFactory.setHibernateProperties(hibernateProperties());
-        return sessionFactory;
-    }
 
-    @Bean
-    public HibernateTransactionManager transactionManager() {
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(sessionFactory().getObject());
-        return transactionManager;
-    }
 
 
 }

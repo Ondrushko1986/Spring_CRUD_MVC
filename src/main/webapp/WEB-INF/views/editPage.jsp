@@ -25,7 +25,7 @@
     <c:url value="/edit" var="var"/>
 </c:if>
 
-<form action="${var}" method="post">
+<form action="${var}" method="POST">
     <c:if test="${!empty user.name}">
         <input type="hidden" name="id" value="${user.id}">
     </c:if>
