@@ -1,6 +1,6 @@
 package test.config;
 
-import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
@@ -14,6 +14,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -32,6 +33,7 @@ public class PersistenceJPAConfig {
     public void setEnvironment(Environment environment) {
         this.environment = environment;
     }
+
 
     @Bean
     public DataSource dataSource() {

@@ -1,15 +1,15 @@
 package test.model;
 
 import javax.persistence.*;
-import com.sun.istack.internal.NotNull;
+
 
 @Entity
-@Table (name = "users_crud_mvc")
+@Table (name = "users_crud")
 public class User {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(name = "name")

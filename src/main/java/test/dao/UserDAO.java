@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface UserDAO {
 
+
         List<User> allUsers();
 
         void add(User user);
@@ -16,5 +17,5 @@ public interface UserDAO {
 
         User getById(int id);
 
-    }
+}
 

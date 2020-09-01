@@ -35,12 +35,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-dbcp</artifactId>
-            <version>9.0.10</version>
-        </dependency>
-
-        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
@@ -52,7 +46,6 @@
             <artifactId>spring-core</artifactId>
             <version>5.2.1.RELEASE</version>
         </dependency>
-
 
 
         <dependency>
@@ -120,7 +113,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.11</version>
+            <version>8.0.17</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -134,7 +127,7 @@
     </dependencies>
 
     <build>
-        <finalName>Spring_CRUD_MVC</finalName>
+        <finalName>crudSpringMVC</finalName>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
                 <plugin>
@@ -169,5 +162,4 @@
             </plugins>
         </pluginManagement>
     </build>
-
 </project>

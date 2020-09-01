@@ -1,5 +1,6 @@
 package test.controller;
 
+import org.springframework.validation.BindingResult;
 import test.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,16 +9,20 @@ import org.springframework.web.servlet.ModelAndView;
 import test.service.UserService;
 
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
 public class UserController {
 
-
     private UserService userService;
 
+    public UserController() {
+    }
+
     @Autowired
-    public void setUserService(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -70,6 +75,6 @@ public class UserController {
         userService.delete(user);
         return modelAndView;
     }
-
-
 }
+
+
