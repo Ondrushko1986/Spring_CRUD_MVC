@@ -29,12 +29,15 @@
     <c:if test="${!empty user.name}">
         <input type="hidden" name="id" value="${user.id}">
     </c:if>
+    <c:if test="${empty user.name}">
+        <input type="hidden" name="id" value=0>
+    </c:if>
     <label for="name">name</label>
-    <input type="text" name="name" id="name">
+    <input type="text" name="name" id="name" value="${user.id}">
     <label for="email">email</label>
-    <input type="text" name="email" id="email">
+    <input type="text" name="email" id="email" value="${user.email}">
     <label for="password">password</label>
-    <input type="text" name="password" id="password">
+    <input type="text" name="password" id="password" value="${user.password}">
     <c:if test="${empty user.name}">
         <input type="submit" value="Add new user">
     </c:if>

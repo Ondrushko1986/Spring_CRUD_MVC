@@ -4,12 +4,12 @@ import javax.persistence.*;
 
 
 @Entity
-@Table (name = "users_crud")
+@Table (name = "users_crud_mvc")
 public class User {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name")

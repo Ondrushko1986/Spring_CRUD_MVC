@@ -60,7 +60,6 @@ public class PersistenceJPAConfig {
         emf.setDataSource(dataSource());
         emf.setPackagesToScan("test");
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-        adapter.setDatabase(Database.MYSQL);
         emf.setJpaVendorAdapter(adapter);
         emf.setJpaDialect(new HibernateJpaDialect());
         emf.setJpaProperties(jpaProperties());

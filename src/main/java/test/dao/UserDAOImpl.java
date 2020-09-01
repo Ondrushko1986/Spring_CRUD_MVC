@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Repository("UserDAOImpl")
+@Repository
 public class UserDAOImpl implements UserDAO {
 
     @PersistenceContext
