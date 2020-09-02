@@ -33,7 +33,7 @@
         <input type="hidden" name="id" value=0>
     </c:if>
     <label for="name">name</label>
-    <input type="text" name="name" id="name" value="${user.id}">
+    <input type="text" name="name" id="name" value="${user.name}">
     <label for="email">email</label>
     <input type="text" name="email" id="email" value="${user.email}">
     <label for="password">password</label>
