@@ -13,14 +13,8 @@ import java.util.List;
 @Repository
 public class UserDAOImpl implements UserDAO {
 
-
-    private EntityManager entityManager;
-
     @PersistenceContext
-    public void setUserDAOImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
+    private EntityManager entityManager;
 
     @Override
     @SuppressWarnings("unchecked")
