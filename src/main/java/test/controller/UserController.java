@@ -1,19 +1,14 @@
 package test.controller;
 
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import test.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import test.service.UserService;
 
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -24,16 +19,42 @@ public class UserController {
     }
 
     @Autowired
-    public UserController(UserService userService) {
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public String registration() {
+        return "editPage";
+    }
+
+
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public String addUser(@ModelAttribute("user") User user) {
+        userService.add(user);
+        return "redirect:/";
+    }
+
+
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String allUsers(Model model) {
         List<User> users = userService.allUsers();
         model.addAttribute("usersList", users);
-        return "users";
+        return "admin";
     }
+
+
+//    @RequestMapping(value = "/admin/{id}", method = RequestMethod.GET)
+//    public String User(@PathVariable("id") int id, Model model) {
+//        model.addAttribute("allUsers", userService.usergtList(id));
+//        return "admin";
+//    }
+//    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    public String allUsers(Model model) {
+//        List<User> users = userService.allUsers();
+//        model.addAttribute("usersList", users);
+//        return "users";
+//    }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editPage(@PathVariable("id") int id, Model model) {
@@ -54,9 +75,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") User user) {
+    public String addUserByAdmin(@ModelAttribute("user") User user) {
         userService.add(user);
         return "redirect:/";
+    }
+
+    @GetMapping(value = "/")
+    public String getHomePage() {
+        return "index";
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)

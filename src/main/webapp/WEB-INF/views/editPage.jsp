@@ -18,7 +18,7 @@
 </head>
 <body>
 <c:if test="${empty user.name}">
-    <c:url value="/add" var="var"/>
+    <c:url value="/registration" var="var"/>
 </c:if>
 
 <c:if test="${!empty user.name}">
