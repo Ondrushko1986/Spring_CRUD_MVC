@@ -12,21 +12,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Spring Security Example </title>
+    <title>Spring Security</title>
 </head>
 <body>
 Login page
 <form th:action="/login" method="post">
     <div><label> User Name : <input type="text" name="name"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><label> Password: <input type="text" name="password"/> </label></div>
     <div><input type="submit" value="Sign In"/></div>
 </form>
 
-<div>
-    <form th:action="/logout" method="post">
-        <input type="submit" value="Sign Out"/>
-    </form>
-    <a href="/registration">Add new user</a>
-</div>
 </body>
 </html>

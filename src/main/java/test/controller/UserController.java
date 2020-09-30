@@ -43,6 +43,14 @@ public class UserController {
         return "admin";
     }
 
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    public String user(Model model,User user) {
+        User userFromDB = userService.getById(user.getId());
+        model.addAttribute("user", userFromDB);
+        return "user";
+    }
+
+
 
 //    @RequestMapping(value = "/admin/{id}", method = RequestMethod.GET)
 //    public String User(@PathVariable("id") int id, Model model) {

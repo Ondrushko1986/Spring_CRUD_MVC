@@ -44,8 +44,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf()
+                .disable()
                 .authorizeRequests()
                 .antMatchers("/", "/registration**").permitAll()
+                .antMatchers("/user").access("hasAnyRole('ROLE_USER')")
                 .anyRequest().authenticated();
         http
                 .formLogin()
@@ -64,11 +67,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return NoOpPasswordEncoder.getInstance();
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication()
-//                .dataSource(dataSource)
-//                .usersByUsernameQuery("select name, password from users_crud_mvc where name=?")
-//                .authoritiesByUsernameQuery("select u.name, ur.roles from users_crud_mvc u inner join usr_role ur on u.id = ur.user_id where u.name=?");
-//    }
 }

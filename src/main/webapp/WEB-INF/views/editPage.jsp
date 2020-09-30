@@ -10,7 +10,7 @@
 <html>
 <head>
     <c:if test="${empty user.name}">
-        <title>Add</title>
+        <title>Registration</title>
     </c:if>
     <c:if test="${!empty user.name}">
         <title>Edit</title>
