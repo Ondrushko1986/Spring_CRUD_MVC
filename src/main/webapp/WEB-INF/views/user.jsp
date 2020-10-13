@@ -20,15 +20,18 @@
         <th>Name</th>
         <th>Email</th>
         <th>Password</th>
+        <th>Role</th>
     </tr>
-    <c:forEach var="user" items="${user}">
-        <tr>
-            <td>${user.id}</td>
-            <td>${user.name}</td>
-            <td>${user.email}</td>
-            <td>${user.password}</td>
-        </tr>
-    </c:forEach>
+    <tr>
+        <td>${user.id}</td>
+        <td>${user.name}</td>
+        <td>${user.email}</td>
+        <td>${user.password}</td>
+        <td>
+            <c:forEach items="${user.roles}" var="role">${role.role}; </c:forEach>
+        </td>
+    </tr>
+
 
     <div>
         <form th:action="/logout" method="post">

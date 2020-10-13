@@ -17,32 +17,33 @@
 
 <body>
 <div>
-    <table>
+    <table border="2" style="width:100px">
         <thead>
         <th>ID</th>
         <th>UserName</th>
         <th>Password</th>
         <th>Roles</th>
         </thead>
-        <c:forEach items="${allUsers}" var="user">
+        <c:forEach items="${usersList}" var="user">
             <tr>
                 <td>${user.id}</td>
                 <td>${user.username}</td>
                 <td>${user.password}</td>
                 <td>
-                    <c:forEach items="${user.roles}" var="role">${role.name}; </c:forEach>
+                    <c:forEach items="${user.roles}" var="role">${role.role}; </c:forEach>
                 </td>
                 <td>
-                    <form action="${pageContext.request.contextPath}/admin" method="post">
-                        <input type="hidden" name="userId" value="${user.id}"/>
-                        <input type="hidden" name="action" value="delete"/>
-                        <button type="submit">Delete</button>
-                    </form>
+                    <a href="admin/edit/${user.id}">edit</a>
+                    <a href="/delete/${user.id}">delete</a>
                 </td>
             </tr>
         </c:forEach>
     </table>
-    <a href="/">Главная</a>
+    <h2>Add</h2>
+    <c:url value="/add" var="add"/>
+    <a href="${add}">Add new user</a>
+    <h2>Home page</h2>
+    <a href="/">To home page</a>
 </div>
 </body>
 </html>

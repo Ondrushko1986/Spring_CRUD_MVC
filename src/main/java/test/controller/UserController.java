@@ -28,11 +28,20 @@ public class UserController {
         return "editPage";
     }
 
-
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user) {
         userService.add(user);
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public String user() {
+        return "index";
     }
 
 
@@ -43,28 +52,7 @@ public class UserController {
         return "admin";
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public String user(Model model,User user) {
-        User userFromDB = userService.getById(user.getId());
-        model.addAttribute("user", userFromDB);
-        return "user";
-    }
-
-
-
-//    @RequestMapping(value = "/admin/{id}", method = RequestMethod.GET)
-//    public String User(@PathVariable("id") int id, Model model) {
-//        model.addAttribute("allUsers", userService.usergtList(id));
-//        return "admin";
-//    }
-//    @RequestMapping(value = "/", method = RequestMethod.GET)
-//    public String allUsers(Model model) {
-//        List<User> users = userService.allUsers();
-//        model.addAttribute("usersList", users);
-//        return "users";
-//    }
-
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "admin/edit/{id}", method = RequestMethod.GET)
     public String editPage(@PathVariable("id") int id, Model model) {
         User user = userService.getById(id);
         model.addAttribute("user", user);
@@ -74,7 +62,7 @@ public class UserController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editUser(@ModelAttribute("user") User user) {
         userService.edit(user);
-        return "redirect:/";
+        return "redirect:admin";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -85,7 +73,7 @@ public class UserController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addUserByAdmin(@ModelAttribute("user") User user) {
         userService.add(user);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
     @GetMapping(value = "/")
@@ -97,7 +85,7 @@ public class UserController {
     public String deleteUser(@PathVariable("id") int id) {
         User user = userService.getById(id);
         userService.delete(user);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 }
 

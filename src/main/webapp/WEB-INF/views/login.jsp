@@ -16,7 +16,7 @@
 </head>
 <body>
 Login page
-<form th:action="/login" method="post">
+<form action="/sign-in"  method="post">
     <div><label> User Name : <input type="text" name="name"/> </label></div>
     <div><label> Password: <input type="text" name="password"/> </label></div>
     <div><input type="submit" value="Sign In"/></div>

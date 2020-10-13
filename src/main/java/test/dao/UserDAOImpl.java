@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -44,7 +45,12 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUserByName(String name) {
-        return entityManager.find(User.class, name);
+        try {
+            return entityManager.createQuery("select u from User u where u.name = :name", User.class)
+                    .setParameter("name", name).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
 
