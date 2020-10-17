@@ -7,7 +7,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
 <!DOCTYPE HTML>
 <html>
@@ -17,14 +17,37 @@
 </head>
 <body>
 <div>
-    <h3>${pageContext.request.userPrincipal.name}</h3>
+    <div><sec:authentication var="user" property="principal"/>
+        <sec:authorize access="isAuthenticated()">
+        <table border="2" style="width:100px">
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Role</th>
+            </tr>
+            <tr>
+                <td>${user.id}</td>
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+                <td>${user.password}</td>
+                <td>
+                    <c:forEach items="${user.roles}" var="role">${role.role}; </c:forEach>
+                </td>
+            </tr>
+            </sec:authorize>
+    </div>
+
     <sec:authorize access="!isAuthenticated()">
         <h4><a href="${pageContext.request.contextPath}/login">Войти</a></h4>
         <h4><a href="${pageContext.request.contextPath}/registration">Зарегистрироваться</a></h4>
     </sec:authorize>
+
     <sec:authorize access="isAuthenticated()">
         <h4><a href="${pageContext.request.contextPath}/logout">Выйти</a></h4>
     </sec:authorize>
+
     <h4><a href="${pageContext.request.contextPath}/admin">Пользователи (только админ)</a></h4>
 </div>
 </body>

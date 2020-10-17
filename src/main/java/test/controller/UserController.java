@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import test.service.UserService;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class UserController {
